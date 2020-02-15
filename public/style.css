@@ -1,0 +1,33 @@
+body {
+    background: #fffdf9;
+    font-size: 62.5%;
+    padding: 10px;
+}
+
+nav {
+    margin-bottom: 10px;
+}
+
+#desc {
+    font-size: 1.001rem;
+}
+
+#heading {
+    font-size: 2rem;
+    
+}
+
+
+ul {
+    float: right;
+    color: white;
+}
+
+ul a {
+    color: white;
+    font-size: 1.2rem;
+}
+
+label {
+    font-size: 1.0001rem;
+}

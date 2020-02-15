@@ -1,5 +1,28 @@
-<h1>This is the campground page</h1>
+<%- include('partials/header') %>
 
-<% camps.forEach((camp) => { %>
-   <li><%= camp.name %></li> 
-<% }) %>
+
+<div class="container-fluid">
+   
+   
+   <div class="row" style="display: flex; flex-wrap: wrap">
+      <% camps.forEach((camp) => { %>
+         <div class="col mb-4">
+            <!-- <div class="card-img-top">
+               <img src="<%= camp.image %>" alt="">
+            </div> -->
+            <!-- <p><%= camp.name %></!-->  
+            <div class="card shadow p-3 mb-5 bg-white rounded" id="card" style="width: 22rem;">
+               <img src="<%= camp.imageUrl %>" class="card-img-top" alt="...">
+               <div class="card-body">
+                  <h5 class="card-title"><%= camp.name %></h5>
+                  <p class="card-text" id="desc"><%= camp.description %></p>
+                  <a href="#" class="btn btn-info">Details</a>
+               </div>
+               </div>
+         </div>
+      <% }) %>
+   </div>
+   
+</div>
+
+<%- include('partials/footer') %>
