@@ -16,6 +16,16 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended : true}))
 app.use(express.static("public"));
 
+app.use(require("express-session")({
+    secret: "Harry potter is the best",
+    resave: false,
+    saveUninitialized: false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.get("/", (req, res) => {
     res.render('landing')
@@ -69,7 +79,7 @@ app.get("/camps/:id", (req ,res) => {
     })
 })
 
-app.post("/camps/:id", (req ,res) => {
+app.post("/camps/:id", isLoggedIn, (req ,res) => {
     var comment = new Comment();
     comment.text = req.body.comment;
 
@@ -81,6 +91,47 @@ app.post("/camps/:id", (req ,res) => {
         })
     })
 })
+
+app.get("/register", (req, res) => {
+    res.render("register")
+})
+
+app.post("/register", (req, res) => {
+    var newUser = new User({username: req.body.username});
+    
+    User.register(newUser, req.body.password, (err, user) => {
+        if (err) {
+            console.log(err);
+            res.render("register")
+        } 
+        passport.authenticate("local")(req, res, () => {
+            res.redirect("/camps")
+        })
+    })
+}) 
+
+app.get("/login", (req, res) => {
+    res.render("login")
+})
+
+app.post("/login", passport.authenticate("local",{
+    successRedirect: '/camps',
+    failureRedirect: '/login'
+}), (req, res) => {
+})
+
+app.get("/logout", (req, res) => {
+    req.logout();
+    res.redirect("/camps")
+})
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+
+    res.redirect('/login')
+}
 
 let PORT = 3000 || process.env.PORT;
 app.listen(PORT, () => {
