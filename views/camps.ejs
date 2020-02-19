@@ -2,7 +2,7 @@
 
 
 <div class="container-fluid" style="position: absolute; top: 15%;">
-
+   
    <div class="container">
    <div class="row" style="display: flex; flex-wrap: wrap">
       <% camps.forEach((camp) => { %>
@@ -19,6 +19,7 @@
                   <a href="/camps/<%= camp._id %>" class="btn btn-info">Details</a>
                </div>
             </div> -->
+            
             <a href="/camps/<%= camp._id %>" id="card-link">
             <div class="card shadow text-white" style="width: 330px; height: 360px;" id="card">
                <div class="img card-img" style="background-image: url('<%= camp.imageUrl %>')">

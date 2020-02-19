@@ -27,12 +27,21 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// Below middleware will run in every api and pass variable of name
+// "currentUser" to every template. So we can use "currentUser" in 
+// our template.
+app.use((req ,res, next) => {
+    res.locals.currentUser = req.user;
+    next();
+})
+
 app.get("/", (req, res) => {
     res.render('landing')
 })
 
 app.get("/camps", (req, res) => {
-    // res.render("camps", {camps: campgrounds});
+    // console.log(req.user);
+    
     Camp.find({})
         .then((camp) => {
             res.render("camps", {camps: camp});
@@ -66,7 +75,7 @@ app.post("/camps", (req, res) => {
 
 })
 
-app.get("/camps/new", (req, res) => {
+app.get("/camps/new", isLoggedIn , (req, res) => {
     res.render("new");
 })
 

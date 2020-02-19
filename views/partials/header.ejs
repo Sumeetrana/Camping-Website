@@ -19,15 +19,21 @@
                  <li class="nav-item">
                     <a class="nav-link" href="/camps" style="color: #555;">Explore</a>
                  </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login" style="color: #555;">Log In</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/register" style="color: #555;">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout" style="color: #555;">Log Out</a>
-                </li>
+                 <% if(!currentUser) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login" style="color: #555;">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register" style="color: #555;">Sign Up</a>
+                    </li>
+                <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: #555;">Signed In As <span style="font-family: cursive;"><%= currentUser.username %></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout" style="color: #555;">Log Out</a>
+                    </li>
+                <% } %>
             </ul>
         </div>
      </nav>
