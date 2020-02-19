@@ -5,24 +5,13 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const Camp = require('./model/campModel');
-
+const Comment = require('./model/commentModel')
 mongoose.connect("mongodb://localhost/camp")
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended : true}))
 app.use(express.static("public"));
 
-// var campgrounds =  [
-//     {name: "Manali", image: "https://cdn.pixabay.com/photo/2020/02/04/10/42/camping-4817872__340.jpg", description: "Exploring the jaw-dropping US east coast by foot and by boat"},
-//     {name: "Abu", image: "https://cdn.pixabay.com/photo/2014/11/27/18/36/tent-548022__340.jpg", description: "Breathtaking hike through the Canadian Banff National ParkExploring the jaw-dropping US east coast by foot and by boat"},
-//     {name: "Hrishikesh", image: "https://cdn.pixabay.com/photo/2016/01/19/16/48/teepee-1149402__340.jpg", description: "Breathing in Nature in America's most spectacular National Parks"},
-//     {name: "Manali", image: "https://cdn.pixabay.com/photo/2020/02/04/10/42/camping-4817872__340.jpg", description: "Exploring the jaw-dropping US east coast by foot and by boat"},
-//     {name: "Abu", image: "https://cdn.pixabay.com/photo/2014/11/27/18/36/tent-548022__340.jpg", description: "Breathtaking hike through the Canadian Banff National ParkExploring the jaw-dropping US east coast by foot and by boat"},
-//     {name: "Hrishikesh", image: "https://cdn.pixabay.com/photo/2016/01/19/16/48/teepee-1149402__340.jpg", description: "Breathing in Nature in America's most spectacular National Parks"},
-//     {name: "Manali", image: "https://cdn.pixabay.com/photo/2020/02/04/10/42/camping-4817872__340.jpg", description: "Exploring the jaw-dropping US east coast by foot and by boat"},
-//     {name: "Abu", image: "https://cdn.pixabay.com/photo/2014/11/27/18/36/tent-548022__340.jpg", description: "Breathtaking hike through the Canadian Banff National ParkExploring the jaw-dropping US east coast by foot and by boat"},
-//     {name: "Hrishikesh", image: "https://cdn.pixabay.com/photo/2016/01/19/16/48/teepee-1149402__340.jpg", description: "Breathing in Nature in America's most spectacular National Parks"}
-// ]
 
 app.get("/", (req, res) => {
     res.render('landing')
@@ -49,11 +38,13 @@ app.post("/camps", (req, res) => {
 
     var name = req.body.name;
     var image = req.body.image;
+    var state = req.body.state;
     var desc = req.body.description;
 
     var site = new Camp();
     site.name = name;
     site.imageUrl = image;
+    site.state = state;
     site.description = desc;
 
     site.save()
@@ -66,7 +57,25 @@ app.get("/camps/new", (req, res) => {
 })
 
 app.get("/camps/:id", (req ,res) => {
-    res.send("This will be the show page one day")
+    Camp.findById(req.params.id).populate("comments").exec((err, foundCamp) => {
+        if(err) console.log(err);
+        else {
+            res.render("show", {camp: foundCamp})
+        }        
+    })
+})
+
+app.post("/camps/:id", (req ,res) => {
+    var comment = new Comment();
+    comment.text = req.body.comment;
+
+    comment.save((err, comment) => {
+        Camp.findById(req.params.id, (err, camp) => {
+            camp.comments.push(comment);
+            camp.save()
+                .then(() => res.redirect(`/camps/${req.params.id}`))
+        })
+    })
 })
 
 let PORT = 3000 || process.env.PORT;

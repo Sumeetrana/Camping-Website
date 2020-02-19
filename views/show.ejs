@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+
+<div></div>
+
+<div style="margin-top: 80px;">
+    <div class="container">
+        <div class="card mb-3" style="width: 100%;">
+            <img class="card-img-top" src="<%= camp.imageUrl %>" alt="Card image cap">
+            <div class="card-body">
+                <h3 class="card-title text-center" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><%= camp.name %>-<%= camp.state %></h3>
+            </div>
+            
+        </div>
+        <hr>
+        
+    </div>
+
+    <div class="container">
+        <p class="lead""><%= camp.description %></p>
+        <hr>
+        <h2>Comments</h2>
+        <form action="/camps/<%= camp._id %>" method="post">
+            <input type="text" name="comment" placeholder="Write a comment.." class="form-control" style="width: 80%; display: inline;">
+            <button class="btn btn-info" style="margin-left: 40px; margin-bottom: 10px">Add Comment</button>
+        </form>
+
+        <% camp.comments.forEach((comment) => { %>
+            <div style="font-size: 1.3rem;"><%= comment.text %></div>
+        <% }) %>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

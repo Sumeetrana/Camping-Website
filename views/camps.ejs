@@ -1,9 +1,9 @@
 <%- include('partials/header') %>
 
 
-<div class="container-fluid">
-   
-   
+<div class="container-fluid" style="position: absolute; top: 15%;">
+
+   <div class="container">
    <div class="row" style="display: flex; flex-wrap: wrap">
       <% camps.forEach((camp) => { %>
          <div class="col mb-4">
@@ -11,18 +11,30 @@
                <img src="<%= camp.image %>" alt="">
             </div> -->
             <!-- <p><%= camp.name %></!-->  
-            <div class="card shadow p-3 mb-5 bg-white rounded" id="card" style="width: 22rem;">
-               <img src="<%= camp.imageUrl %>" class="card-img-top" alt="...">
+            <!-- <div class="card shadow p-3 mb-5 bg-white rounded" id="card" style="width: 22rem;">
+               <img src="<%= camp.imageUrl %>" class="card-img-top" style="width: 315px; height: 200px;">
                <div class="card-body">
                   <h5 class="card-title"><%= camp.name %></h5>
                   <p class="card-text" id="desc"><%= camp.description %></p>
-                  <a href="#" class="btn btn-info">Details</a>
+                  <a href="/camps/<%= camp._id %>" class="btn btn-info">Details</a>
                </div>
+            </div> -->
+            <a href="/camps/<%= camp._id %>" id="card-link">
+            <div class="card shadow text-white" style="width: 330px; height: 360px;" id="card">
+               <div class="img card-img" style="background-image: url('<%= camp.imageUrl %>')">
+                  <!-- <img class="card-img" src="<%= camp.imageUrl %>" alt="Card image" style="height: 100%; background-size: cover; background-repeat: no-repeat;"> -->
                </div>
+               <div class="card-img-overlay" style="text-align: center;">
+                 <h2 class="card-title" style="position: relative;top: 80%;"><%= camp.name %></h2>
+                 <h5 class="card-text" style="position: relative;top: 80%;"><%= camp.state %></h5>
+                 <!-- <p class="card-text">Last updated 3 mins ago</p> -->
+               </div>
+             </div>
+             </a>
          </div>
       <% }) %>
    </div>
-   
+</div>
 </div>
 
 <%- include('partials/footer') %>
