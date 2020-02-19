@@ -1,12 +1,16 @@
 const express = require('express');
-
-var app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport')
+const LocalStrategy = require('passport-local');
 
 const Camp = require('./model/campModel');
 const Comment = require('./model/commentModel')
+const User = require('./model/userModel');
+
 mongoose.connect("mongodb://localhost/camp")
+
+var app = express();
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended : true}))
