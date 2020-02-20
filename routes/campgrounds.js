@@ -36,11 +36,11 @@ router.post("/", isLoggedIn, (req, res) => {
 
 })
 
-router.get("/new", isLoggedIn , (req, res) => {
+router.get("/new", isLoggedIn, (req, res) => {
     res.render("new");
 })
 
-router.get("/:id", (req ,res) => {
+router.get("/:id",  (req ,res) => {
     Camp.findById(req.params.id).populate("comments").exec((err, foundCamp) => {
         if(err) console.log(err);
         else {
@@ -49,13 +49,13 @@ router.get("/:id", (req ,res) => {
     })
 })  
 
-router.get("/:id/edit", (req, res) => {
+router.get("/:id/edit", checkCampOwnership, (req, res) => {
     Camp.findById(req.params.id, (err, camp) => {
         res.render("edit", {camp: camp})
     })
 })
 
-router.post("/:id/edit", (req, res) => {
+router.post("/:id/edit", checkCampOwnership, (req, res) => {
     Camp.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, camp) => {
         if (!err) {
             res.redirect(`/camps/${req.params.id}`)
@@ -63,13 +63,32 @@ router.post("/:id/edit", (req, res) => {
     })
 })
 
-router.get("/:id/delete", (req, res) => {
+router.get("/:id/delete", checkCampOwnership, (req, res) => {
     Camp.findByIdAndDelete(req.params.id, (err, camp) => {
         if (!err) {
             res.redirect("/camps");
         }
     })
 })
+
+function checkCampOwnership(req, res, next) {
+    if (req.isAuthenticated()) {
+        Camp.findById(req.params.id, (err, foundCamp) => {
+            if (err) {
+                res.redirect("back")
+            } else {
+                if (foundCamp.author.id.equals(req.user._id)) {
+                    next();
+                } else {
+                    res.redirect("back");
+                    
+                }
+            }
+        })
+    } else {
+        res.redirect("back")
+    }
+}
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
