@@ -11,26 +11,26 @@
 <body>
     <!--Navbar -->
     <nav class="navbar shadow fixed-top navbar-expand-sm bg-light navbar-dark justify-content-end" style="margin-bottom: 70px;">
-        <a class="navbar-brand mr-auto" href="/" style="color: #555;">HIKER'S PARADISE</a>
-        <!-- <a href="/camps/new" class="btn btn-primary ml-auto mr-1">Add new camp</a> -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand mr-auto" href="/" style="color: #555; font-family: cursive;"><strong> HIKER'S PARADISE</strong></a>
+        
+        <a class="nav-link link ml-auto" href="/camps" style="color: #555;">Explore</a>
+        
         <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
             <ul class="navbar-nav text-right">
-                <li class="nav-item">
-                    <a class="nav-link" href="/camps" style="color: #555;">Explore</a>
-                </li>
+                
                 <% if(!currentUser) { %>
                     <li class="nav-item">
-                        <a class="nav-link" href="/login" style="color: #555;">Log In</a>
+                        <a class="nav-link link" href="/login" style="color: #555;">Log In</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/register" style="color: #555;">Sign Up</a>
+                        <a class="nav-link link" href="/register" style="color: #555;">Sign Up</a>
                     </li>
                 <% } else {  %>
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout" style="color: #555;">Log Out</a>
+                        <a class="nav-link link" href="#" style="color: #555;">Signed In As <span style="font-family: cursive;"><%= currentUser.username %></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link" href="/logout" style="color: #555;">Log Out</a>
                     </li>
                 <% } %>
             </ul>

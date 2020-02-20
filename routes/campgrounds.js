@@ -19,12 +19,17 @@ router.post("/", isLoggedIn, (req, res) => {
     var image = req.body.image;
     var state = req.body.state;
     var desc = req.body.description;
+    var author = {
+        id: req.user._id,
+        username: req.user.username
+    }
 
     var site = new Camp();
     site.name = name;
     site.imageUrl = image;
     site.state = state;
     site.description = desc;
+    site.author = author;
 
     site.save()
         .then(() => res.redirect('/camps'))
