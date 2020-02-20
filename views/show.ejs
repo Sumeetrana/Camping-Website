@@ -30,7 +30,7 @@
                     
 
                     <% camp.comments.forEach((comment) => { %>
-                        <h5 style="display: inline;"><strong>User</strong></h5>
+                        <h5 style="display: inline;"><strong><%= comment.author.username %></strong></h5>
                         <span style="margin-left: 80%;font-size: 1rem;">10 days ago</span>
                         <div style="font-size: 1.3rem;"><%= comment.text %></div>
                         <hr>

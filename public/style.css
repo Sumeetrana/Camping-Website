@@ -17,20 +17,12 @@ nav {
 
 }
 
-
-
-ul {
-    float: right;
-    color: white;
-}
-
-ul a {
-    color: white;
-    font-size: 1.2rem;
-}
-
 label {
     font-size: 1.0001rem;
+}
+
+.link {
+    font-size: 1.2rem;
 }
 
 .img {

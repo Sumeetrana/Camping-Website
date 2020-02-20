@@ -7,7 +7,8 @@ const Comment = require('../model/commentModel');
 router.post("/camps/:id", isLoggedIn, (req ,res) => {
     var comment = new Comment();
     comment.text = req.body.comment;
-
+    comment.author.id = req.user._id;
+    comment.author.username = req.user.username;
     comment.save((err, comment) => {
         Camp.findById(req.params.id, (err, camp) => {
             camp.comments.push(comment);
