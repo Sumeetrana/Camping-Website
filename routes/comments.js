@@ -16,6 +16,7 @@ router.post("/camps/:id", isLoggedIn, (req ,res) => {
                 .then(() => res.redirect(`/camps/${req.params.id}`))
         })
     })
+
 })
 
 function isLoggedIn(req, res, next) {

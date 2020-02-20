@@ -47,6 +47,28 @@ router.get("/:id", (req ,res) => {
             res.render("show", {camp: foundCamp})
         }        
     })
+})  
+
+router.get("/:id/edit", (req, res) => {
+    Camp.findById(req.params.id, (err, camp) => {
+        res.render("edit", {camp: camp})
+    })
+})
+
+router.post("/:id/edit", (req, res) => {
+    Camp.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, camp) => {
+        if (!err) {
+            res.redirect(`/camps/${req.params.id}`)
+        }
+    })
+})
+
+router.get("/:id/delete", (req, res) => {
+    Camp.findByIdAndDelete(req.params.id, (err, camp) => {
+        if (!err) {
+            res.redirect("/camps");
+        }
+    })
 })
 
 function isLoggedIn(req, res, next) {

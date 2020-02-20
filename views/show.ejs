@@ -8,7 +8,10 @@
             <img class="card-img-top img-responsive" src="<%= camp.imageUrl %>" alt="Card image cap">
             <div class="card-body">
                 <h3 class="card-title text-center" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><%= camp.name %>-<%= camp.state %></h3>
-                <p class="text-muted text-right" style="font-size: 1rem;">  Submitted by <strong><%= camp.author.username %></strong></p>
+                <a href="<%= camp._id %>/edit" class="btn btn-secondary">Edit</a>
+                <a href="<%= camp._id %>/delete" class="btn btn-danger" >Delete</a>
+                <p class="text-muted text-right" style="font-size: 1rem;" style="margin-bottom: 30px;">  Submitted by <strong><%= camp.author.username %></strong></p>
+
             </div>
             
                 <!-- <button  class="btn btn-info ml-auto" style="width: 20%;margin: 10px;">Add to cart</button> -->
