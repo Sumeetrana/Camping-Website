@@ -36,8 +36,11 @@ passport.deserializeUser(User.deserializeUser());
 // Below middleware will run in every api and pass variable of name
 // "currentUser" to every template. So we can use "currentUser" in 
 // our template.
+// Basically res.locals variables are available to all templates.
 app.use((req ,res, next) => {
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
     next();
 })
 

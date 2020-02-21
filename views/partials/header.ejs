@@ -36,4 +36,17 @@
             </ul>
         </div>
      </nav>
+
+     <div class="container" style="position: relative;">
+        <% if(success && success.length > 0) { %>
+            <div class="alert alert-success">
+                <%= success %>
+            </div>
+        <% } %>
+        <% if(error && error.length > 0) { %>
+            <div class="alert alert-danger" style="margin-top: 5rem;">
+                <%= error %>
+            </div>
+        <% } %>
+     </div>
   
