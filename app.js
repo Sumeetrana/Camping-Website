@@ -40,8 +40,9 @@ app.use((req ,res, next) => {
 })
 
 app.use('/', indexRoutes);
-app.use(commentRoutes);
 app.use('/camps',campRoutes);
+app.use(commentRoutes);
+
 
 
 let PORT = 3000 || process.env.PORT;

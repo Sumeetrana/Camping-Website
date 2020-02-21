@@ -19,6 +19,14 @@ router.post("/camps/:id", isLoggedIn, (req ,res) => {
 
 })
 
+router.get("/camps/:id/comments/:commentId/delete", (req, res) => {
+    Comment.findByIdAndDelete(req.params.commentId, (err, foundComment) => {
+        res.redirect(`/camps/${req.params.id}`)
+    })
+    
+})
+
+
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next();

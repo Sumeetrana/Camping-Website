@@ -7,29 +7,30 @@
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 <body >
     <!--Navbar -->
     <nav  class="navbar shadow fixed-top navbar-expand-sm bg-light navbar-dark justify-content-end" style="margin-bottom: 30px;">
         <h2><a class="navbar-brand" href="/" style="color: #555; font-family: cursive;"><strong>HIKER'S PARADISE</strong></a></h2>
-        <a class="nav-link link" href="/camps" style="color: #555; font-size: 1.2rem;">Explore</a>
-        <a href="/camps/new" class="btn btn-primary ml-auto mr-1" >Add new camp</a>
+        <a class="nav-link link" href="/camps" style="color: #555; font-size: 1.2rem;"><i class="fas fa-th-list"></i> Explore</a>
+        <a href="/camps/new" class="btn btn-primary ml-auto mr-1"><i class="fas fa-plus-circle"></i> Add new camp</a>
         
         <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
             <ul class="navbar-nav text-right" id="list">
                 <% if(!currentUser) { %>
                     <li class="nav-item">
-                        <a class="nav-link link" href="/login" style="color: #555;">Log In</a>
+                        <a class="nav-link link" href="/login" style="color: #555;"><i class="fas fa-sign-in-alt"></i> Log In</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link" href="/register" style="color: #555;">Sign Up</a>
+                        <a class="nav-link link" href="/register" style="color: #555;"><i class="fas fa-address-book"></i> Sign Up</a>
                     </li>
                 <% } else { %>
                     <li class="nav-item">
-                        <a class="nav-link link" href="#" style="color: #555;">Signed In As <span style="font-family: cursive;"><%= currentUser.username %></span></a>
+                        <a class="nav-link link" href="#" style="color: #555;"><i class="fas fa-user" style="margin-right: 4px;"></i><span style="font-family: cursive;"><%= currentUser.username %></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link" href="/logout" style="color: #555;">Log Out</a>
+                        <a class="nav-link link" href="/logout" style="color: #555;"><i class="fas fa-sign-out-alt"></i>Log Out</a>
                     </li>
                 <% } %>
             </ul>
