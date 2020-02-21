@@ -19,13 +19,31 @@ router.post("/camps/:id", isLoggedIn, (req ,res) => {
 
 })
 
-router.get("/camps/:id/comments/:commentId/delete", (req, res) => {
+router.get("/camps/:id/comments/:commentId/delete", checkCommentAuthorization, (req, res) => {
     Comment.findByIdAndDelete(req.params.commentId, (err, foundComment) => {
         res.redirect(`/camps/${req.params.id}`)
     })
-    
 })
 
+function checkCommentAuthorization(req, res, next) {
+    if (req.isAuthenticated()) {
+        Comment.findById(req.params.commentId, (err, foundComment) => {
+            if (err) {
+                res.redirect("back")
+            } else {
+                if (foundComment.author.id.equals(req.user._id)) {
+                   next(); 
+                } else {
+                    res.redirect("back");
+                    console.log("You are not authorized");
+                    
+                }
+            }
+        })
+    } else {
+        res.redirect("back");
+    }
+}
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {

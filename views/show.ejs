@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 
-<div></div>
+
 
 <div style="margin-top: 80px;">
     <div class="container">
@@ -44,7 +44,9 @@
                             <p style="display:inline"><%= comment.text %></p>
                             
                                 <!-- <a href="/camps/<%= camp._id %>/comments/edit" class="btn btn-secondary" style="margin-left: 10%;">Edit</a> -->
-                            <a href="/camps/<%= camp._id %>/comments/<%= comment._id %>/delete" class="btn btn-danger" >Delete</a>
+                            <% if(currentUser && comment.author.id.equals(currentUser._id)) {%>                                 
+                                <a href="/camps/<%= camp._id %>/comments/<%= comment._id %>/delete" class="btn btn-danger" >Delete</a>
+                            <% } %>
                             
                         </div>
                         <!-- <div style="display: inline;">  
