@@ -47,7 +47,7 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     }
-    req.flash("error", "Please log in") // We have to put this line before res.redirect()
+    req.flash("error", "Please log in first") // We have to put this line before res.redirect()
     res.redirect('/login')
 }
 

@@ -1,11 +1,21 @@
 <%- include('partials/header') %>
 <div style="margin-top: 5rem;">
-    <h1>Signup</h1>
+
+<div class="container">
+    <h1 class="text-center" style="font-family: Arial, Helvetica, sans-serif;">Signup page</h1>
+    <hr>
 
     <form action="/register" method="post">
-        <input type="text" placeholder="username" name="username">
-        <input type="password" placeholder="password" name="password">
-        <button>Sign Up</button>
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="username" class="form-control" placeholder="username" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" placeholder="password">
+        </div>
+        <button class="btn btn-info">Sign Up</button>
     </form>
+    </div>
 </div>
 <%- include('partials/footer') %>

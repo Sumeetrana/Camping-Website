@@ -13,7 +13,7 @@ const commentRoutes = require('./routes/comments')
 const campRoutes = require('./routes/campgrounds')
 const indexRoutes = require('./routes/auth');
 
-mongoose.connect("mongodb://localhost/camp")
+mongoose.connect("mongodb+srv://sumeet123:sumeet123@camp-3tyhx.mongodb.net/test?retryWrites=true&w=majority")
 
 var app = express();
 

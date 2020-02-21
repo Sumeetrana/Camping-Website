@@ -1,0 +1,144 @@
+body {
+    background-color: #000;
+}
+
+#landing-header {
+    z-index: 1;
+    position: relative;
+    text-align: center;
+    padding-top: 40vh;
+}
+
+#landing-header h1 {
+    color: #fff;
+}
+
+.slideshow { 
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.slideshow li { 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+    animation: imageAnimation 50s linear infinite; 
+}
+
+.slideshow li:nth-child(1) { 
+    background-image: url(https://images.unsplash.com/photo-1500581276021-a4bbcd0050c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80) 
+}
+  .slideshow li:nth-child(2) { 
+    background-image: url(https://images.unsplash.com/photo-1496080174650-637e3f22fa03?ixlib=rb-1.2.1&auto=format&fit=crop&w=1412&q=80);
+    animation-delay: 10s; 
+}
+  .slideshow li:nth-child(3) { 
+    background-image: url(https://images.unsplash.com/photo-1451175811948-ae3ee5ba3f7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);
+    animation-delay: 20s; 
+}
+  .slideshow li:nth-child(4) { 
+    background-image: url(https://cdn.pixabay.com/photo/2016/11/19/16/51/adventure-1840292_960_720.jpg);
+    animation-delay: 30s; 
+}
+.slideshow li:nth-child(5) { 
+    background-image: url(http://i.imgur.com/TVGe0Ef.jpg);
+    animation-delay: 40s; 
+}
+
+.slideshow li:nth-child(5) { 
+    background-image: url(https://images.unsplash.com/photo-1536028943632-1b302c2761b3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1459&q=80);
+    animation-delay: 40s; 
+}
+
+#heading {
+    animation: headingAnimation 0.5s;
+    letter-spacing: 0.5rem;
+    font-family: cursive;
+}
+
+
+#slogan {
+    color: white;
+    animation : sloganAnimation 0.5s;
+    font-family: cursive;
+    letter-spacing: 1rem;
+    
+}
+
+#viewButton {
+    margin-top: 1rem;
+    animation: buttonAnimation 0.5s ease-out 0.15s;
+    animation-fill-mode: backwards;
+}
+
+@keyframes headingAnimation {
+    0% {
+        opacity: 0;
+        transform: translateX(-2rem);
+    }
+
+    80% {
+        transform: translateX(1rem);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes sloganAnimation {
+    0% {
+        opacity: 0;
+        transform: translateX(2rem);
+    }
+
+    80% {
+        transform: translateX(-1rem);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes buttonAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(4rem);   
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes imageAnimation { 
+    0% { 
+      opacity: 0; 
+      animation-timing-function: ease-in;
+    }
+    10% {
+      opacity: 1;
+      animation-timing-function: ease-out;
+    }
+    20% {
+      opacity: 1
+    }
+    30% {
+      opacity: 0
+    }
+}
