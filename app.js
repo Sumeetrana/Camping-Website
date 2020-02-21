@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport')
 const LocalStrategy = require('passport-local');
+const flash = require('connect-flash')
 
 const Camp = require('./model/campModel');
 const Comment = require('./model/commentModel')
@@ -19,6 +20,7 @@ var app = express();
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended : true}))
 app.use(express.static("public"));
+app.use(flash());
 
 app.use(require("express-session")({
     secret: "Harry potter is the best",

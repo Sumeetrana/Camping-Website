@@ -26,7 +26,9 @@ router.post("/register", (req, res) => {
 }) 
 
 router.get("/login", (req, res) => {
-    res.render("login")
+    res.render("login", {message: req.flash("error")});
+    
+    
 })
 
 router.post("/login", passport.authenticate("local",{
@@ -44,7 +46,7 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     }
-
+    req.flash("error", "Please log in") // We have to put this line before res.redirect()
     res.redirect('/login')
 }
 
