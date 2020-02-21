@@ -48,10 +48,7 @@ app.use('/', indexRoutes);
 app.use('/camps',campRoutes);
 app.use(commentRoutes);
 
-
-
-let PORT = 3000 || process.env.PORT;
-app.listen(PORT, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log("Camping website has started");
     
 })
