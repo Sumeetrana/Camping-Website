@@ -50,5 +50,4 @@ app.use(commentRoutes);
 
 app.listen(process.env.PORT || 5000, () => {
     console.log("Camping website has started");
-    
 })
