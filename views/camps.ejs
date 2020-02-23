@@ -14,6 +14,11 @@
    </header>
    <div class="container">
    <div class="row text-center" style="display: flex; flex-wrap: wrap">
+      <% if(noMatch !== null) { %> 
+         <div class="col-md-12">
+           <h3><%= noMatch %></h3>
+         </div>
+      <% } %>
       <% camps.forEach((camp) => { %>
          
          <div class="col-md-4 col-sm-6 mb-4">

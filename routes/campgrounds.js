@@ -5,12 +5,23 @@ const Camp = require('../model/campModel')
 
 router.get("/", (req, res) => {
     // console.log(req.user);
-    
-    Camp.find({})
-        .then((camp) => {
-            res.render("camps", {camps: camp});
-        })
-      
+    let noMatch = null;
+    if (req.query.search) {
+        const regex = new RegExp(escapeRegExp(req.query.search), 'gi');
+        
+        Camp.find({name: regex})
+            .then((camp) => {
+                if (camp.length < 1) {
+                    noMatch = "Your search query doesn't exist, please try again later"            
+                }
+                res.render("camps", {camps: camp, noMatch: noMatch});
+            })
+    } else {
+        Camp.find({})
+            .then((camp) => {
+                res.render("camps", {camps: camp, noMatch: noMatch});
+            })
+        }
 })
 
 router.post("/", isLoggedIn, (req, res) => {
@@ -89,6 +100,10 @@ function checkCampOwnership(req, res, next) {
         res.redirect("back")
     }
 }
+
+function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+  }
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
