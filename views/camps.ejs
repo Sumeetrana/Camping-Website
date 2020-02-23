@@ -15,8 +15,8 @@
    <div class="container">
    <div class="row text-center" style="display: flex; flex-wrap: wrap">
       <% if(noMatch !== null) { %> 
-         <div class="col-md-12">
-           <h3><%= noMatch %></h3>
+         <div class="col-md-12 alert alert-warning">
+           <h4><%= noMatch %></h4>
          </div>
       <% } %>
       <% camps.forEach((camp) => { %>

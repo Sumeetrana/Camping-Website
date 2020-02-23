@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
         Camp.find({name: regex})
             .then((camp) => {
                 if (camp.length < 1) {
-                    noMatch = "Your search query doesn't exist, please try again later"            
+                    noMatch = "Your search query doesn't exist, please try again"            
                 }
                 res.render("camps", {camps: camp, noMatch: noMatch});
             })
