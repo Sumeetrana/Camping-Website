@@ -2,7 +2,16 @@
 
 
 <div class="container-fluid" style="position: absolute; top: 15%;">
-   
+   <header style="margin-left: 69%;">
+      <p>
+         <form action="/camps" method="GET" class="form-inline">
+            <div class="form-group">
+               <input type="text" name="search" placeholder="Search" class="form-control">
+               <input type="submit" value="Search" class="btn btn-info ml-4">
+            </div>
+         </form>
+      </p>
+   </header>
    <div class="container">
    <div class="row text-center" style="display: flex; flex-wrap: wrap">
       <% camps.forEach((camp) => { %>
